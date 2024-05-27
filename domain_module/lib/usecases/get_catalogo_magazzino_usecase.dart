@@ -1,34 +1,40 @@
 import 'package:common_module/utilities/check_connectivity.dart';
-import 'package:data_module/models/realm/RealmBook.dart';
-import 'package:data_module/models/rest/RestBook.dart';
 import 'package:data_module/repositories/magazzino_repository.dart';
 import 'package:domain_module/models/Book.dart';
 
 
 ///
 class GetCatalogoMagazzinoUsecase {
-
   /// Recupera la lista di Book
-  Future<List<Book>> call() async {
-    List<Book> books = [];
-    try {
-      if(await CheckConnectivity().isOnline()) {
-        List<$RestBook> rb = await MagazzinoRepository().getCatalogoDataRemote();
-        for(var r in rb) {
-          books.add(Book.fromRestData(r));
+  Future<List<Book>> call([Future<bool> Function() testOnline = isOnline]) {
+    return genericCall(
+        testOnline: testOnline,
+        onlineFn: () {
+          return MagazzinoRepository()
+                  .getCatalogoDataRemote()
+                  .then((value) => value.map((r) => Book.fromRestData(r)));
+        },
+        offlineFn: () {
+          return MagazzinoRepository()
+              .getCatalogoDataLocal()
+              .then((value) => value.map((r) => Book.fromRealmData(r)));
         }
-      }
-      else {
-        List<$RealmBook> rb = await MagazzinoRepository().getCatalogoDataLocal();
-        for(var r in rb) {
-          books.add(Book.fromRealmData(r));
-        }
-      }
-    }
-    catch(e) {
-      print(e);
-    }
-    return books;
+    ).then(
+      (value) => value?.toList() ?? []
+    );
   }
+}
 
+Future<T?> genericCall<T>({
+  Future<bool> Function() testOnline = isOnline,
+  required Future<T> Function() onlineFn,
+  required Future<T> Function() offlineFn,
+}) {
+  return testOnline()
+            .then(
+              (value) => value ? onlineFn() : offlineFn()
+            )
+            .catchError((err) {
+              print(err);
+            });
 }
