@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/connectivity_for_web-0.4.0+1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/connectivity-3.0.6" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/realm-2.3.0" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

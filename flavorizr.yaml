@@ -1,0 +1,42 @@
+flavors:
+  dev:
+    app:
+      name: "AppName Dev"
+
+    android:
+      applicationId: "com.example.primoprogetto.dev"
+      firebase:
+        config: ".firebase/dev/google-services.json"
+
+    ios:
+      bundleId: "com.example.primoprogetto.dev"
+      firebase:
+        config: ".firebase/dev/GoogleService-Info.plist"
+
+  mock:
+    app:
+      name: "AppName Mock"
+
+    android:
+      applicationId: "com.example.primoprogetto.mock"
+      firebase:
+        config: ".firebase/mock/google-services.json"
+
+    ios:
+      bundleId: "com.example.primoprogetto.mock"
+      firebase:
+        config: ".firebase/mock/GoogleService-Info.plist"
+
+  prod:
+    app:
+      name: "AppName"
+
+    android:
+      applicationId: "com.example.primoprogetto"
+      firebase:
+        config: ".firebase/prod/google-services.json"
+
+    ios:
+      bundleId: "com.example.primoprogetto"
+      firebase:
+        config: ".firebase/prod/GoogleService-Info.plist"
