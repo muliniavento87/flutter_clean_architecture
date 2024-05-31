@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "363802549620",
+    "project_id": "primo-progetto-spindox",
+    "storage_bucket": "primo-progetto-spindox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363802549620:android:d148028469b501adf9e021",
+        "android_client_info": {
+          "package_name": "com.example.primoprogetto"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWuvLbGTrePcAw8jIz1lEcQJSNYEitzr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

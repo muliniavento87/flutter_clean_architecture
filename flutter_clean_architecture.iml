@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/data_module/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/data_module/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/data_module/build" />
+      <excludeFolder url="file://$MODULE_DIR$/domain_module/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/domain_module/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/domain_module/build" />
+    </content>
+  </component>
+</module>

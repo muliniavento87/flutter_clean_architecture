@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAfAYsetOr3dH6U-n-B4K12djjLj3jYj2Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>363802549620</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.primoprogetto</string>
+	<key>PROJECT_ID</key>
+	<string>primo-progetto-spindox</string>
+	<key>STORAGE_BUCKET</key>
+	<string>primo-progetto-spindox.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:363802549620:ios:bc156af28ab80d5bf9e021</string>
+</dict>
+</plist>
