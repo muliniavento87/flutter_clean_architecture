@@ -1,4 +1,6 @@
 
+import 'package:data_module/data_module.dart';
+import 'package:domain_module/usecases/switch_theme_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'shop_page_state.dart';
 
@@ -20,6 +22,10 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
         state = state.copyWith(isLoading: true);
         // elaborazioni varie
         state = state.copyWith(isLoading: false);
+    }
+
+    void switchTheme() {
+        SwitchThemeUseCase(ref.read(appConfigRepositoryProvider)).call(ref);
     }
 }
 

@@ -1,0 +1,4 @@
+#Mon Jun 03 16:55:47 CEST 2024
+base.0=/Users/giuseppe.alfieri/my_work/flutter_clean_architecture/build/app/intermediates/dex/devDebug/mergeDexDevDebug/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

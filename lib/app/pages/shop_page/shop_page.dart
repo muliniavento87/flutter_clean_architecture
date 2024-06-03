@@ -7,7 +7,7 @@ class ShopPage extends ConsumerWidget {
     // Se ricevessimo una var stringa "s" da fuori
     //final String s;
     //ShopPage(this.s, {super.key});
-    static String pagePath = "shop_page";
+    static String pagePath = "/";
 
     ShopPage({super.key});
 
@@ -27,7 +27,14 @@ class ShopPage extends ConsumerWidget {
             body: (state.isLoading) ?
             const Center(
                 child: CircularProgressIndicator(),
-            ) : const Text("Shop Page")
+            ) :  Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                        vm.switchTheme();
+                        //ref.read(_testVMTemplate.notifier).switchTheme();
+                    },
+                    child: Text('Switch Theme')),
+            )
         );
     }
 }

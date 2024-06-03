@@ -75,7 +75,7 @@ Modelli astratti del data_module
 
 # "data_module/lib/src/di/"
 Dependency injections (providers di datasources e repositories)
-## providers/di_app_config_provider.dart
+## internals/di_app_config_provider.dart
 Providers per servizi e datasources
 ```
 import 'package:data_module/data_module.dart';
@@ -99,7 +99,7 @@ final appConfigDataSourceProvider = Provider<AppConfigDataSource>((ref) {
   return AppConfigDataSourceImpl(ref);
 });
 ```
-## providers/di_shared_pref_provider.dart
+## internals/di_shared_pref_provider.dart
 Providers per servizi e datasources
 ```
 import 'package:data_module/data_module.dart';

@@ -15,3 +15,8 @@ final appConfigRepositoryProvider = Provider<AppConfigRepository>((ref) {
       appConfigDataSource: ref.read(appConfigDataSourceProvider)
   );
 });
+
+///
+final isDarkModeProvider = Provider<bool>((ref) {
+  return ref.watch(ref.read(appConfigRepositoryProvider).isDarkModeProvider());
+});
