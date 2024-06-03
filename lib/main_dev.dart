@@ -1,5 +1,5 @@
-import 'package:common_module/flavors.dart';
-import 'package:secondo_progetto/my_app/my_app.dart';
+import 'package:data_module/data_module.dart';
+import 'package:flutter_clean_architecture/app/main.dart';
 
 
 void main() async {

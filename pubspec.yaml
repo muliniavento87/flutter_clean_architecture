@@ -31,13 +31,18 @@ dependencies:
   flutter:
     sdk: flutter
 
+  domain_module:
+    path: ./domain_module
+  data_module:
+    path: ./data_module
+  common_module:
+    path: ./common_module
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   flutter_riverpod: ^2.5.1
   freezed: ^2.5.2
-  freezed_annotation: ^2.4.1
   go_router: ^14.1.4
   flutter_flavorizr: ^2.2.3
   build_runner: ^2.4.9
@@ -94,3 +99,26 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+# To run scripts follow this-> https://pub.dev/packages/rps
+scripts:
+  build: flutter pub run build_runner build --delete-conflicting-outputs
+  watch: flutter pub run build_runner watch --delete-conflicting-outputs
+  realm: dart run realm generate
+  build_realm: flutter packages pub run build_runner build --delete-conflicting-outputs && dart run realm generate
+
+  clean_build: flutter clean && flutter pub get && flutter pub run build_runner build --delete-conflicting-outputs
+  clean_build_realm: flutter clean && flutter pub get && flutter packages pub run build_runner build --delete-conflicting-outputs && dart run realm generate
+
+  flavorizr_install: flutter pub run flutter_flavorizr -p assets:download,assets:extract,android:androidManifest,android:buildGradle,android:dummyAssets,android:icons,ios:xcconfig,ios:buildTargets,ios:schema,ios:dummyAssets,ios:icons,ios:plist,ios:launchScreen,macos:xcconfig,macos:configs,macos:buildTargets,macos:schema,macos:dummyAssets,macos:icons,macos:plist,google:firebase,huawei:agconnect,assets:clean,ide:config
+
+  apk:
+    mock: flutter build apk --flavor mock -t lib/main_mock.dart --release
+    dev: flutter build apk --flavor dev -t lib/main_dev.dart --release
+    qa: flutter build apk --flavor qa -t lib/main_qa.dart --release
+    prod: flutter build apk --flavor prod -t lib/main_prod.dart --release
+  ipa:
+    mock: flutter build ios --flavor mock -t lib/main_mock.dart --release
+    dev: flutter build ios --flavor dev -t lib/main_dev.dart --release
+    qa: flutter build ios --flavor qa -t lib/main_qa.dart --release
+    prod: flutter build ios --flavor prod -t lib/main_prod.dart --release
