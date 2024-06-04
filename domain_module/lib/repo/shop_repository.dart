@@ -1,6 +1,8 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain_module/models/book.dart';
 
 abstract class ShopRepository {
 
-  void getCatalogo();
+  Future<List<Book>> getCatalogo();
+
+  Future addToRemoteCart(Book book);
 }

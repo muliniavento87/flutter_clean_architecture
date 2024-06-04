@@ -6,5 +6,5 @@ import 'config.dart';
 class ConfigMock implements Config {
 
   @override
-  String get baseUrl => "https://google.com/"; //TODO
+  String get baseUrl => "http://10.0.2.2:4000/";
 }

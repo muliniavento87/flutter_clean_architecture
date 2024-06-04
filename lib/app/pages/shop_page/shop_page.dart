@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/app/pages/shop_page_2/shop_page_2.dart';
+import 'package:flutter_clean_architecture/app/widgets/book_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'shop_page_vm.dart';
 
@@ -19,6 +21,7 @@ class ShopPage extends ConsumerWidget {
 
         final vm = ref.read(shopPageProvider.notifier);
         final state = ref.watch(shopPageProvider);
+        //vm.initListeners(ref);
 
         return Scaffold(
             appBar: AppBar(
@@ -38,10 +41,25 @@ class ShopPage extends ConsumerWidget {
                             },
                             child: const Text('Switch Theme')
                         ),
+                        ElevatedButton(
+                            onPressed: () {
+                              vm.getCatalogoShop();
+                            },
+                            child: const Text('Load Catalogo Shop')
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => ShopPage2()));
+                            },
+                            child: const Text('NAV')
+                        ),
                       ],
                     ),
                     Expanded(
-                        child: Text("")
+                        child: ListView.builder(
+                            itemCount: state.catalogoShop.length,
+                            itemBuilder: (context, index) => BookCard(state.catalogoShop[index])
+                        )
                     )
                   ],
                 ),

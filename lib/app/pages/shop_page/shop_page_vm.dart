@@ -1,6 +1,9 @@
 
 import 'package:data_module/data_module.dart';
+import 'package:domain_module/usecases/retrieve_current_cart_usecase.dart';
+import 'package:domain_module/usecases/retrive_catalogo_usecase.dart';
 import 'package:domain_module/usecases/switch_theme_usecase.dart';
+import 'package:flutter_clean_architecture/app/ext/ext.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'shop_page_state.dart';
 
@@ -19,9 +22,10 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
     }
 
     Future<void> initAsync() async {
-        state = state.copyWith(isLoading: true);
         // elaborazioni varie
-        state = state.copyWith(isLoading: false);
+        getCatalogoShop();
+        registerToCart();
+        //initListeners(ref);
     }
 
     ///
@@ -30,8 +34,22 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
     }
 
     ///
-    void getCatalogoShop() {
-        //GetCatalogoShopUseCase(ref.read(appConfigRepositoryProvider)).call(ref);
+    Future<void> getCatalogoShop() async {
+        state = state.copyWith(isLoading: true);
+        // elaborazioni varie
+        RetrieveCatalogoUseCase(ref.readShopRepProv).call()
+        .then((value) =>  state = state.copyWith(
+            catalogoShop: value,
+            isLoading: false
+        )).onError((error, stackTrace) => state = state.copyWith(isLoading: false,)); //TODO manage error
+
+    }
+
+    void registerToCart(){
+        var listner = ref.listen(RetrieveCurrentCartUseCase(ref.readCartRepProv).call(), (previous, next) {
+
+        });
+        //listner.close()
     }
 }
 
@@ -44,5 +62,8 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
 final shopPageProvider = StateNotifierProvider.autoDispose<ShopPageVM, ShopPageState>((ref) {
     return ShopPageVM(ref);
 });
+
+
+
 
     
