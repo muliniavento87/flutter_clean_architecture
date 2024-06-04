@@ -1,1 +1,0 @@
- /Users/giuseppe.alfieri/my_work/flutter_clean_architecture/.dart_tool/flutter_build/a1bd810a3a8880fea4aaae73c4a686d7/native_assets.yaml: 

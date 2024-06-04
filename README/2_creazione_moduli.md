@@ -8,6 +8,10 @@ flutter create --template=module domain_module && cd domain_module && rm -r test
 flutter create --template=module common_module && cd common_module && rm -r test .idea lib/main.dart *.iml; cd ..
 ```
 ## Add dipendenze base ai moduli
+### root progetto
+```
+flutter pub add flutter_riverpod freezed go_router build_runner json_serializable flutter_flavorizr
+```
 ### data_module
 riverpod (providers),
 client rest (dio),
@@ -18,7 +22,7 @@ cd data_module && flutter pub add flutter_riverpod dio awesome_dio_interceptor s
 ### domain_module
 riverpod (providers)
 ```
-cd domain_module && flutter pub add flutter_riverpod; cd ..
+cd domain_module && flutter pub add flutter_riverpod json_annotation; cd ..
 ```
 ## Import moduli
 ### progetto (pubspec.yaml)

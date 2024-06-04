@@ -19,9 +19,6 @@ class MyApp extends ConsumerWidget {
     );
   }
 
-  ///
-  //darkMode(ref) => ref.read(appConfigRepositoryProvider).isDarkModeProvider();
-
 }
 
 

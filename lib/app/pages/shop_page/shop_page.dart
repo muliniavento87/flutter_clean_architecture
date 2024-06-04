@@ -28,12 +28,23 @@ class ShopPage extends ConsumerWidget {
             const Center(
                 child: CircularProgressIndicator(),
             ) :  Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                        vm.switchTheme();
-                        //ref.read(_testVMTemplate.notifier).switchTheme();
-                    },
-                    child: Text('Switch Theme')),
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        ElevatedButton(
+                            onPressed: () {
+                                vm.switchTheme();
+                            },
+                            child: const Text('Switch Theme')
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                        child: Text("")
+                    )
+                  ],
+                ),
             )
         );
     }

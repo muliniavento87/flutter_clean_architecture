@@ -24,8 +24,14 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
         state = state.copyWith(isLoading: false);
     }
 
+    ///
     void switchTheme() {
         SwitchThemeUseCase(ref.read(appConfigRepositoryProvider)).call(ref);
+    }
+
+    ///
+    void getCatalogoShop() {
+        //GetCatalogoShopUseCase(ref.read(appConfigRepositoryProvider)).call(ref);
     }
 }
 

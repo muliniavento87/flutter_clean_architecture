@@ -3,15 +3,19 @@ Test di implementazione della Clean Architecture su Flutter
 
 # Passaggi creazione struttura per nuovo progetto
 1. Dipendenze base del progetto
+
+**ATTENZIONE!**: Il progetto è settato in modo da avviare il build_runner su tutti i file del progetto e dei moduli.
+Le dipendenze relative quindi basta metterle nel "pubspec.yaml" della root di progetto (es. "json_serializable").
 ```
 # progetto [
     riverpod (providers),
     freezed (classi immutabili),
     go_router (routing pagine),
     flutter_flavorizr (gen. flavors),
+    json_serializable (gen. modelli.g)
     build_runner (gen. codice)
     ]
-flutter pub add flutter_riverpod freezed freezed_annotation go_router flutter_flavorizr build_runner
+flutter pub add flutter_riverpod freezed freezed_annotation json_serializable go_router flutter_flavorizr build_runner
 ```
 2. Creazione moduli layers
 - [README](README/2_creazione_moduli.md)

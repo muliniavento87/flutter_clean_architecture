@@ -1,7 +1,8 @@
+# |retrofit_generator
 targets:
   $default:
     builders:
-      json_serializable|freezed|retrofit_generator:
+      json_serializable|freezed:
         generate_for:
           - "{{}}.dart"
     sources:
