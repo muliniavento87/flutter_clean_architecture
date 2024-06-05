@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/app/pages/shop_page_2/shop_page_2.dart';
 import 'package:flutter_clean_architecture/app/widgets/book_card.dart';
+import 'package:flutter_clean_architecture/app/widgets/cart_badge/cart_badge.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'shop_page_vm.dart';
 
@@ -21,7 +22,6 @@ class ShopPage extends ConsumerWidget {
 
         final vm = ref.read(shopPageProvider.notifier);
         final state = ref.watch(shopPageProvider);
-        //vm.initListeners(ref);
 
         return Scaffold(
             appBar: AppBar(
@@ -35,9 +35,45 @@ class ShopPage extends ConsumerWidget {
                   children: [
                     Column(
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
+                              child: Row(
+                                children: [
+                                  GestureDetector(
+                                    child: CircleAvatar(
+                                      minRadius: 16,
+                                      maxRadius: 16,
+                                      child: Icon(Icons.remove),
+                                    ),
+                                    onTap: () {
+                                      vm.removeBookFromCart();
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: GestureDetector(
+                                      child: CircleAvatar(
+                                        minRadius: 16,
+                                        maxRadius: 16,
+                                        child: Icon(Icons.add),
+                                      ),
+                                      onTap: () {
+                                        vm.addBookFromCart();
+                                      },
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                            CartBadge(),
+                          ],
+                        ),
                         ElevatedButton(
                             onPressed: () {
-                                vm.switchTheme();
+                              vm.switchTheme();
                             },
                             child: const Text('Switch Theme')
                         ),

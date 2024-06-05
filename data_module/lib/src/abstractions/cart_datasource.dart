@@ -8,7 +8,7 @@ abstract class CartDataSource {
 
   addToCart(Book book);
 
-  removeToCart(Book book);
+  removeFromCart(Book book);
 
   clearAll();
 }

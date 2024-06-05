@@ -26,12 +26,14 @@ class CartDataSourceImpl implements CartDataSource {
   }
 
   @override
-  removeToCart(Book book) {
+  removeFromCart(Book book) {
     var pr = ref.read(cartProvider.notifier);
-    pr.state = pr.state.where((element) => element != book).toList();
+    pr.state = pr.state.where((element) => element.name != book.name).toList();
   }
 }
 
+/*
 final _isDarkModeProvider = Provider<bool>((ref) {
   return ref.watch(appConfigProvider).isDark;
 });
+*/

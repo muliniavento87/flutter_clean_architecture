@@ -6,13 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddToCartUsecase {
   CartRepository cartRepository;
-  ShopRepository shopRepository;
+  //ShopRepository shopRepository;
 
 
-  AddToCartUsecase(this.cartRepository, this.shopRepository);
+  //AddToCartUsecase(this.cartRepository, this.shopRepository);
+  AddToCartUsecase(this.cartRepository);
 
   void call(Book book) {
-    shopRepository.addToRemoteCart(book);
     cartRepository.addToCart(book);
   }
 }

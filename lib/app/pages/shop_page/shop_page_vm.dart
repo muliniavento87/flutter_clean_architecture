@@ -1,5 +1,9 @@
 
 import 'package:data_module/data_module.dart';
+import 'package:domain_module/models/book.dart';
+import 'package:domain_module/repo/cart_repository.dart';
+import 'package:domain_module/usecases/add_to_cart_usecase.dart';
+import 'package:domain_module/usecases/remove_from_cart_usecase.dart';
 import 'package:domain_module/usecases/retrieve_current_cart_usecase.dart';
 import 'package:domain_module/usecases/retrive_catalogo_usecase.dart';
 import 'package:domain_module/usecases/switch_theme_usecase.dart';
@@ -25,7 +29,6 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
         // elaborazioni varie
         getCatalogoShop();
         registerToCart();
-        //initListeners(ref);
     }
 
     ///
@@ -34,7 +37,7 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
     }
 
     ///
-    Future<void> getCatalogoShop() async {
+    void getCatalogoShop() {
         state = state.copyWith(isLoading: true);
         // elaborazioni varie
         RetrieveCatalogoUseCase(ref.readShopRepProv).call()
@@ -42,14 +45,30 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
             catalogoShop: value,
             isLoading: false
         )).onError((error, stackTrace) => state = state.copyWith(isLoading: false,)); //TODO manage error
-
     }
 
     void registerToCart(){
-        var listner = ref.listen(RetrieveCurrentCartUseCase(ref.readCartRepProv).call(), (previous, next) {
-
+        // Esegue il corpo quando cambia lo stato del provider (ref.readCartRepProv o ref.read(cartRepositoryProvider)).
+        // Viene modificato da tutti i metodi del CartRepository
+        var listener = ref.listen(RetrieveCurrentCartUseCase(ref.readCartRepProv).call(), (previous, next) {
+            //getCatalogoShop();
         });
         //listner.close()
+    }
+
+    void removeBookFromCart() {
+        List<Book> lista = ref.read(RetrieveCurrentCartUseCase(ref.readCartRepProv).call());
+        if(lista.length <= 0) {
+            return;
+        }
+        RemoveFromCartUsecase(ref.read(cartRepositoryProvider)).call(lista.first);
+    }
+
+    void addBookFromCart() {
+        List<Book> lista = ref.read(RetrieveCurrentCartUseCase(ref.readCartRepProv).call());
+        AddToCartUsecase(ref.read(cartRepositoryProvider)).call(
+            Book(name: "name${lista.length}", status: 0, price: 1.2)
+        );
     }
 }
 

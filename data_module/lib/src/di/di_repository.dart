@@ -35,10 +35,11 @@ final shopApiRepositoryProvider = Provider<ShopApiRepositoryImpl>((ref) {
   );
 });
 
-
+///
 final cartRepositoryProvider = Provider<CartRepository>((ref) {
   return CartRepositoryImpl(
-      ref,
-    ref.read(cartDataSourceProvider)
+    ref,
+    ref.read(cartDataSourceProvider),
+    //ref.read(shopDatasourceProvider)
   );
 });
