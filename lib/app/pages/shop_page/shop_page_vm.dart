@@ -27,8 +27,9 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
 
     Future<void> initAsync() async {
         // elaborazioni varie
-        getCatalogoShop();
-        registerToCart();
+        //getCatalogoShopRemovingCart();
+        //registerToCart();
+        //getCatalogoShop();
     }
 
     ///
@@ -36,6 +37,7 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
         SwitchThemeUseCase(ref.read(appConfigRepositoryProvider)).call(ref);
     }
 
+    /*
     ///
     void getCatalogoShop() {
         state = state.copyWith(isLoading: true);
@@ -46,12 +48,27 @@ class ShopPageVM extends StateNotifier<ShopPageState> {
             isLoading: false
         )).onError((error, stackTrace) => state = state.copyWith(isLoading: false,)); //TODO manage error
     }
+    */
+
+    ///
+    void getCatalogoShopRemovingCart() {
+        state = state.copyWith(isLoading: true);
+        // elaborazioni varie
+        List<Book> currentCart = ref.read(RetrieveCurrentCartUseCase(ref.readCartRepProv).call());
+        RetrieveCatalogoUseCase(ref.readShopRepProv).call()
+            .then((value) =>  state = state.copyWith(
+            // filtro il catalogo nascondendo quelli già nel carrello
+            catalogoShop: value.where((obj) => !(currentCart.map((e) => e.id).toList()).contains(obj.id)).toList(),
+            isLoading: false
+        )).onError((error, stackTrace) => state = state.copyWith(isLoading: false,)); //TODO manage error
+    }
 
     void registerToCart(){
         // Esegue il corpo quando cambia lo stato del provider (ref.readCartRepProv o ref.read(cartRepositoryProvider)).
         // Viene modificato da tutti i metodi del CartRepository
         var listener = ref.listen(RetrieveCurrentCartUseCase(ref.readCartRepProv).call(), (previous, next) {
             //getCatalogoShop();
+            getCatalogoShopRemovingCart();
         });
         //listner.close()
     }

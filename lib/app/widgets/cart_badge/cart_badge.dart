@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_clean_architecture/app/pages/cart_page/cart_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'cart_badge_vm.dart';
 
@@ -21,37 +22,40 @@ class CartBadge extends ConsumerWidget {
         final vm = ref.read(cartBadgeProvider.notifier);
         final state = ref.watch(cartBadgeProvider);
 
-        return Stack(
-          alignment: Alignment.center,
-          children: [
-            // area trasparente (stile padding)
-            const CircleAvatar(
-              minRadius: 32,
-              maxRadius: 32,
-              backgroundColor: Colors.transparent
-            ),
-            // area viola
-            const CircleAvatar(
-              minRadius: 24,
-              maxRadius: 24,
-              child: Icon(
-                  Icons.shopping_cart
+        return GestureDetector(
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => CartPage())),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // area trasparente (stile padding)
+              const CircleAvatar(
+                minRadius: 32,
+                maxRadius: 32,
+                backgroundColor: Colors.transparent
               ),
-            ),
-            // area rossa con numero
-            Positioned(
-              top: 3, // >0 => sposta in basso
-              right: 3, // >0 => sposta a sx
-              child: CircleAvatar(
-                minRadius: 12,
-                maxRadius: 12,
-                backgroundColor: Colors.red,
-                child: Text(
-                    state.counter.toString()
+              // area viola
+              const CircleAvatar(
+                minRadius: 24,
+                maxRadius: 24,
+                child: Icon(
+                    Icons.shopping_cart
                 ),
               ),
-            )
-          ],
+              // area rossa con numero
+              Positioned(
+                top: 3, // >0 => sposta in basso
+                right: 3, // >0 => sposta a sx
+                child: CircleAvatar(
+                  minRadius: 12,
+                  maxRadius: 12,
+                  backgroundColor: Colors.red,
+                  child: Text(
+                      state.counter.toString()
+                  ),
+                ),
+              )
+            ],
+          ),
         );
     }
 }
